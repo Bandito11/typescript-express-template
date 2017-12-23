@@ -16,6 +16,7 @@ src/ToDelete/
 dist/
 node_modules/
 $RECYCLE.BIN/
+package-lock.json
 
 .DS_Store
 Thumbs.db
