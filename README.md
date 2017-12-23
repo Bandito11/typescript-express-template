@@ -7,7 +7,7 @@
 
 # Instructions
 
-*run in terminal or command prompt
+run in terminal or command prompt
  git clone 'github link'
  cd node-template-v1
  npm i
