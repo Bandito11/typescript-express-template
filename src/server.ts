@@ -7,9 +7,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-const www = require('./routes/index.js'); 
+// this is the route to be used. 
+const index = require('./routes/index.js'); 
 
-
+// Only allow if you want to use it as an API.
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -19,7 +20,15 @@ const www = require('./routes/index.js');
 
 app.disable('x-powered-by');
 
-app.use('/', www);
+//example of calling a route. 
+app.use('/index', index);
+//In order to call static pages to be used on the front end. 
+app.use(express.static(`${__dirname}/www`));
+
+//This will call the first page. The path can be changed to whatever you want.
+app.get('/', function (req, res){
+res.send(express.static(`${__dirname}/www/pages/index/index.html`))
+});
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {

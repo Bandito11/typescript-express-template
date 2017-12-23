@@ -14,20 +14,20 @@ gulp.task('build', function () {
         .js.pipe(gulp.dest("dist"));
 });
 
-gulp.task('www', () => gulp
-.src('src/www')
-.pipe(gulp.dest('dist'))
-);
+gulp.task('www', function () { 
+gulp.src('src/www/**/*')
+.pipe(gulp.dest('dist/www'));
+});
 
 /**
 *Start the node app
 */
-gulp.task('start', ['build', 'www'], function () {
+gulp.task('start', ['www', 'build'], function () {
     var stream = nodemon({
         script: 'dist/server.js',
-        ext: 'ts',
+        ext: '*',
         watch: 'src',
-        tasks: ['build'],
+        tasks: ['build', 'www'],
     });
     return stream;
 });
