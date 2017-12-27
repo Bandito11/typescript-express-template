@@ -12,7 +12,7 @@ gulp.task('clean', function (error) {
 /**
  * If using github Pages
  */
-// gulp.task('gitPages', function () { 
+// gulp.task('gitPages', function () {
 //     gulp.src('dist/www/**/*')
 //     .pipe(gulp.dest('docs'));
 //     });
@@ -41,23 +41,33 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('dist/www'));
 });
 
-// Uncommented until needed.
-// gulp.task('libs', function () {
-//     gulp.src('src/www/**/*.js')
-//         .pipe(gulp.dest('dist/www'));
-// });
 gulp.task('pages', function () {
     gulp.src('src/www/**/*.html')
         .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('watch', function(){
-    gulp.watch('src/www/assets/**/*', ['assets']); 
-    gulp.watch('src/www/**/*.css', ['styles']); 
+    gulp.watch('src/www/assets/**/*', ['assets']);
+    gulp.watch('src/www/**/*.css', ['styles']);
     // gulp.watch('src/www/**/*.js', ['libs']); Uncommented until needed
-    gulp.watch('src/www/**/*.html', ['pages']); 
-    gulp.watch('src/www/**/*.ts', ['build:www']); 
+    gulp.watch('src/www/**/*.html', ['pages']);
+    gulp.watch('src/www/**/*.ts', ['build:www']);
 });
+
+// Uncommented until needed.
+gulp.task('libs', function () {
+    gulp.src('node_modules/lokijs/build/lokijs.min.js')
+    .pipe(gulp.dest('dist/www/libs'));
+
+    gulp.src('src/www/**/*.js')
+        .pipe(gulp.dest('dist/www'));
+});
+
+
+/**
+ * Import front end libs from node_modules
+ */
+
 
 /**
 * Build for the server side.
@@ -73,7 +83,7 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', ['watch', 'assets', 'styles', 'pages', 'build:www', 'build:server'], function () {
+gulp.task('start', ['libs', 'watch', 'assets', 'styles', 'pages', 'build:www', 'build:server'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',
