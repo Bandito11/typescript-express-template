@@ -25,13 +25,16 @@
     "@types/morgan": "^1.7.32",
     "@types/request": "^2.0.9",
     "@types/serve-favicon": "^2.2.28",
+    "browser-sync": "^2.21.0",
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-typescript": "^3.1.6",
     "typescript": "^2.3.3"
   },
   "scripts": {
-    "start": "node dist/server.js"
+    "start": "node dist/server/server.js",
+    "test": "gulp clean && gulp"
   },
   "author": "Esteban Morales",
   "license": "MIT"

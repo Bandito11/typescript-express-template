@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+      "target": "es5",
+      "noImplicitAny": false,
+      "typeRoots": [
+        "node_modules/@types"
+      ],
+      "lib": [
+        "es2017",
+        "dom"
+      ]
+    },
+    "include": [
+      "./**/*.ts"
+    ],
+    "compileOnSave": false
+  }
+  

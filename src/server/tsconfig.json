@@ -1,26 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      
-    },
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es6",
+    "target": "es2017",
     "removeComments": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "noImplicitAny": false
   },
   "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "src/todelete"
+    "./**/*.ts"
   ],
   "compileOnSave": false
 }
