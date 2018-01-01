@@ -13,7 +13,7 @@ const path = require('path');
 const dirPages = 'www/pages';
 
 // this is the route to be used. 
-// const index = require('./routes/index.js');
+const index = require('./routes/main.js');
 
 // Only allow if you want to use it as an API.
 // app.use(function (req, res, next) {
@@ -26,7 +26,7 @@ const dirPages = 'www/pages';
 app.disable('x-powered-by');
 
 //example of calling a route. 
-// app.use('/index', index);
+app.use('/index', index);
 
 //In order to call static pages to be used on the front end. 
 app.use(express.static(path.join(__dirname, 'www')));

@@ -1,6 +1,6 @@
 {
   "name": "node-template",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Template to have a running server in seconds",
   "engines": {
     "node": ">=7.0.0"
@@ -33,7 +33,7 @@
     "typescript": "^2.3.3"
   },
   "scripts": {
-    "start": "node dist/server/server.js",
+    "start": "node dist/server.js",
     "test": "gulp clean && gulp"
   },
   "author": "Esteban Morales",
