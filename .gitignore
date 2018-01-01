@@ -11,7 +11,7 @@ log.txt
 *.sublime-workspace
 npm-debug.log*
 
-
+package.json
 dist/
 node_modules/
 $RECYCLE.BIN/
