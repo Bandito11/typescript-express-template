@@ -12,7 +12,7 @@ log.txt
 npm-debug.log*
 
 
-dist/
+# dist/
 node_modules/
 $RECYCLE.BIN/
 package-lock.json
