@@ -6,9 +6,16 @@
 
 
 # Instructions
-
- - *run in terminal or command prompt
- - git clone 'github link'
+ - Install nodejs from https://nodejs.org/ and git from https://git-scm.com/
+ - start terminal (or command prompt if on Windows)
+ 
+ In terminal (or command prompt)
+ - git clone https://github.com/Bandito11/node-template-v1.git my-custom-app-name
  - cd node-template-v1
  - npm i
- - gulp
+ - npm test
+ 
+ 
+#
+
+All of the ready to distribute files are on the dist folder.
