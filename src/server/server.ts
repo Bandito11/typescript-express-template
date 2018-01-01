@@ -11,7 +11,7 @@ const path = require('path');
 
 // these are the paths of each folder to be used.
 const dirPages = 'www/pages';
-const dirIndex = `${dirPages}/index`;
+
 // this is the route to be used. 
 // const index = require('./routes/index.js');
 
@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'www')));
 
 //This will call the first page. The path can be changed to whatever you want.
 app.get('/', function (req, res) {
-  fs.readFile(`${__dirname}/${dirIndex}/index.html`, function (err, data) {
+  fs.readFile(`${__dirname}/${dirPages}/index.html`, function (err, data) {
     if (err) {
       res.status(500);
       console.error(err);

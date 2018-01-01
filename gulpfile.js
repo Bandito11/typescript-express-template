@@ -2,7 +2,6 @@ let gulp = require("gulp");
 let ts = require("gulp-typescript");
 let nodemon = require('gulp-nodemon');
 let del = require('del');
-let browserSync = require('browser-sync').create();
 
 
 gulp.task('clean', function (error) {
@@ -46,7 +45,7 @@ gulp.task('pages', function () {
         .pipe(gulp.dest('dist/www'));
 });
 
-gulp.task('watch', function(){
+gulp.task('watch', function () {
     gulp.watch('src/www/assets/**/*', ['assets']);
     gulp.watch('src/www/**/*.css', ['styles']);
     // gulp.watch('src/www/**/*.js', ['libs']); Uncommented until needed
@@ -57,7 +56,7 @@ gulp.task('watch', function(){
 // Uncommented until needed.
 gulp.task('libs', function () {
     gulp.src('node_modules/lokijs/build/lokijs.min.js')
-    .pipe(gulp.dest('dist/www/libs'));
+        .pipe(gulp.dest('dist/www/libs'));
 
     gulp.src('src/www/**/*.js')
         .pipe(gulp.dest('dist/www'));
