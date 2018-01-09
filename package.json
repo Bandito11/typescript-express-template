@@ -33,7 +33,7 @@
     "typescript": "^2.3.3"
   },
   "scripts": {
-    "start": "gulp build:www && gulp build:server && node dist/server.js",
+    "start": "gulp build:www && gulp build:server && gulp sheets && gulp assets && gulp styles && gulp pages && node dist/server.js",
     "dev": "gulp clean && gulp"
   },
   "author": "Esteban Morales",

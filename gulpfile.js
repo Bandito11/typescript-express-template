@@ -82,7 +82,7 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', ['libs', 'watch', 'assets', 'styles', 'pages', 'build:www', 'build:server'], function () {
+gulp.task('start', ['libs', 'watch', 'build:www', 'build:server'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',

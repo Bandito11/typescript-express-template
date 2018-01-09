@@ -7,11 +7,11 @@
 
 # Instructions
  - Install nodejs from https://nodejs.org/ and git from https://git-scm.com/
- - start terminal (or command prompt if on Windows)
+ - start terminal app (or command prompt if on Windows)
  
  In terminal (or command prompt)
  - git clone https://github.com/Bandito11/node-template-v1.git my-custom-app-name
- - cd node-template-v1
+ - cd my-custom-app-name
  - npm i
  - npm test
  
