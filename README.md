@@ -13,8 +13,8 @@
  - git clone https://github.com/Bandito11/node-template-v1.git my-custom-app-name
  - cd my-custom-app-name
  - npm i
- - npm test
- 
+ - npm dev
+ - git remote rm origin
  
 #
 
