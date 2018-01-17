@@ -5,7 +5,8 @@
 
 
 
-# Instructions- Go to https://git-scm.com/ and follow the instruction to install git.
+# Instructions- 
+- Go to https://git-scm.com/ and follow the instruction to install git.
 - Create a Github account on www.github.com
 - run < git config --global user.email "email@example.com" > on the Terminal to set the email for your github account. 
 - run < cd ~/path/to/project > 
