@@ -9,14 +9,17 @@
 log.txt
 *.sublime-project
 *.sublime-workspace
-npm-debug.log*
+
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
 
 
 dist/
-node_modules/
 $RECYCLE.BIN/
 package-lock.json
 
-.DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
