@@ -3,7 +3,6 @@ let ts = require("gulp-typescript");
 let nodemon = require('gulp-nodemon');
 let del = require('del');
 
-
 gulp.task('clean', function (error) {
     return del.sync('dist', error);
 });
@@ -11,51 +10,60 @@ gulp.task('clean', function (error) {
 /**
  * If using github Pages
  */
-// gulp.task('gitPages', function () {
-//     gulp.src('dist/www/**/*')
-//     .pipe(gulp.dest('docs'));
-//     });
+// gulp.task('gitPages', function () {     gulp.src('dist/www/**/*')
+// .pipe(gulp.dest('docs'));     });
+
+/**
+ * TODO: Build for the front end
+ * WIP :(
+//  */
 
 gulp.task('build:www', function () {
     let tsProject = ts.createProject('src/www/tsconfig.json');
     console.log('Compiling www!');
-    return tsProject.src()
+    return tsProject
+        .src()
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dist/www/js"));
+        .js
+        .pipe(gulp.dest("dist/www/js"));
 });
 
 gulp.task('assets', function () {
-    gulp.src('src/www/assets/**/*')
+    gulp
+        .src('src/www/assets/**/*')
         .pipe(gulp.dest('dist/www/assets'));
 });
 
 gulp.task('styles', function () {
-    gulp.src('src/www/**/*.css')
+    gulp
+        .src('src/www/**/*.css')
         .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('pages', function () {
-    gulp.src('src/www/**/*.html')
+    gulp
+        .src('src/www/**/*.html')
         .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('watch', function () {
     gulp.watch('src/www/assets/**/*', ['assets']);
     gulp.watch('src/www/**/*.css', ['styles']);
-    gulp.watch('src/www/**/*.js', ['libs']);
     gulp.watch('src/www/**/*.html', ['pages']);
     gulp.watch('src/www/**/*.ts', ['build:www']);
 });
 
-
 /**
- * Import front end libs from node_modules to front end
+ * Import front end libs from node_modules
  */
+
 gulp.task('libs', function () {
-    gulp.src('node_modules/lokijs/build/lokijs.min.js')
+    gulp
+        .src('node_modules/lokijs/build/lokijs.min.js')
         .pipe(gulp.dest('dist/www/libs'));
 
-    gulp.src('src/www/**/*.js')
+    gulp
+        .src('src/www/**/*.js')
         .pipe(gulp.dest('dist/www'));
 });
 
@@ -65,24 +73,27 @@ gulp.task('libs', function () {
 gulp.task('build:server', function () {
     let tsProject = ts.createProject('src/server/tsconfig.json');
     console.log('Compiling server!');
-    return tsProject.src()
+    return tsProject
+        .src()
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dist"));
+        .js
+        .pipe(gulp.dest("dist"));
 });
 
 /**
 *Start the node app
 */
-gulp.task('start', ['libs', 'watch', 'build:www', 'build:server'], function () {
-    let stream = nodemon({
-        script: 'dist/server.js',
-        ext: 'ts',
-        watch: 'src/*',
-        tasks: ['build:server'],
-    });
+gulp.task('start', [
+    'libs',
+    'assets',
+    'styles',
+    'pages',
+    'build:www',
+    'build:server',
+    'watch'
+], function () {
+    let stream = nodemon({script: 'dist/server.js', ext:'ts', watch: 'src/server', tasks: ['build:server']});
     return stream;
 });
 
-
 gulp.task('default', ['start']);
-
