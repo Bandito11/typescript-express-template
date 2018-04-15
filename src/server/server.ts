@@ -33,16 +33,16 @@ app.use(express.static(path.join(__dirname, 'www')));
 
 //This will call the first page. The path can be changed to whatever you want.
 app.get('/', function (req, res) {
+      res.writeHead(200, {
+      'Content-Type': 'text/html',
+      'charset': 'utf-8'
+    });
   fs.readFile(`${__dirname}/${dirPages}/index.html`, function (err, data) {
     if (err) {
       res.status(500);
       console.error(err);
       res.end('Couldn\'t retrieve the page, please try again!');
     }
-    res.writeHead(200, {
-      'Content-Type': 'text/html',
-      'charset': 'utf-8'
-    });
     res.end(data);
   });
 });
