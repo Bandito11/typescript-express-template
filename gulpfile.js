@@ -16,12 +16,6 @@ gulp.task('clean', function (error) {
 //     .pipe(gulp.dest('docs'));
 //     });
 
-
-/**
- * TODO: Build for the front end
- * WIP :(
-//  */
-
 gulp.task('build:www', function () {
     let tsProject = ts.createProject('src/www/tsconfig.json');
     console.log('Compiling www!');
@@ -48,12 +42,15 @@ gulp.task('pages', function () {
 gulp.task('watch', function () {
     gulp.watch('src/www/assets/**/*', ['assets']);
     gulp.watch('src/www/**/*.css', ['styles']);
-    // gulp.watch('src/www/**/*.js', ['libs']); Uncommented until needed
+    gulp.watch('src/www/**/*.js', ['libs']);
     gulp.watch('src/www/**/*.html', ['pages']);
     gulp.watch('src/www/**/*.ts', ['build:www']);
 });
 
-// Uncommented until needed.
+
+/**
+ * Import front end libs from node_modules to front end
+ */
 gulp.task('libs', function () {
     gulp.src('node_modules/lokijs/build/lokijs.min.js')
         .pipe(gulp.dest('dist/www/libs'));
@@ -61,12 +58,6 @@ gulp.task('libs', function () {
     gulp.src('src/www/**/*.js')
         .pipe(gulp.dest('dist/www'));
 });
-
-
-/**
- * Import front end libs from node_modules
- */
-
 
 /**
 * Build for the server side.
@@ -86,7 +77,7 @@ gulp.task('start', ['libs', 'watch', 'build:www', 'build:server'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',
-        watch: 'src/server',
+        watch: 'src/*',
         tasks: ['build:server'],
     });
     return stream;
