@@ -1,9 +1,9 @@
 {
   "name": "node-template",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Template to have a running server in seconds",
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "@types/serve-static": "^1.13.1",
@@ -17,23 +17,24 @@
     "serve-static": "^1.13.1"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.16.3",
-    "@types/express": "^4.0.35",
-    "@types/gulp": "^4.0.2",
-    "@types/gulp-nodemon": "^0.0.30",
+    "@types/serve-static": "^1.13.1",
+    "@types/body-parser": "^1.16.8",
+    "@types/express": "^4.11.1",
+    "@types/gulp": "^4.0.5",
+    "@types/gulp-nodemon": "^0.0.32",
     "@types/lokijs": "^1.5.0",
-    "@types/morgan": "^1.7.32",
-    "@types/request": "^2.0.9",
-    "@types/serve-favicon": "^2.2.28",
-    "browser-sync": "^2.21.0",
+    "@types/morgan": "^1.7.35",
+    "@types/request": "^2.47.0",
+    "@types/serve-favicon": "^2.2.30",
+    "browser-sync": "^2.23.6",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
-    "gulp-typescript": "^3.1.6",
-    "typescript": "^2.3.3"
+    "gulp-typescript": "^4.0.2",
+    "typescript": "^2.8.1"
   },
   "scripts": {
-    "start": "gulp build:www && gulp build:server && gulp sheets && gulp assets && gulp styles && gulp pages && node dist/server.js",
+    "start": "node dist/server.js",
     "dev": "gulp clean && gulp"
   },
   "author": "Esteban Morales",
