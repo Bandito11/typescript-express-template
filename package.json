@@ -1,6 +1,6 @@
 {
   "name": "node-template",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Template to have a running server in seconds",
   "engines": {
     "node": ">=8.0.0"
