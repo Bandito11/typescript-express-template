@@ -15,13 +15,13 @@ const dirPages = 'www/pages';
 // this is the route to be used. 
 const index = require('./routes/main.js');
 
-// Only allow if you want to use it as an API.
-// app.use(function (req, res, next) {
+Only allow if you want to use it as an API.
+ app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
-//   next();
-// });
+   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+   res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
+   next();
+ });
 
 app.disable('x-powered-by');
 
