@@ -83,16 +83,14 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', [
-    'libs',
-    'assets',
-    'styles',
-    'pages',
-    'build:www',
-    'build:server',
-    'watch'
+gulp.task('start', ['libs', 'assets', 'styles', 'pages', 'build:www', 'build:server', 'watch'
 ], function () {
-    let stream = nodemon({script: 'dist/server.js', ext:'ts', watch: 'src/server', tasks: ['build:server']});
+    let stream = nodemon({
+        script: 'dist/server.js',
+        ext: 'ts',
+        watch: 'src/server',
+        tasks: ['build:server']
+    });
     return stream;
 });
 
