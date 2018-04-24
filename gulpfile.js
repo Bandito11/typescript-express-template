@@ -3,8 +3,8 @@ let ts = require("gulp-typescript");
 let nodemon = require('gulp-nodemon');
 let del = require('del');
 
-gulp.task('clean', function (error) {
-    return del.sync('dist', error);
+gulp.task('clean', function (done) {
+    return del(['libs', 'assets', 'styles', 'pages', 'build:www', 'build:server'], done);
 });
 
 /**
@@ -29,20 +29,17 @@ gulp.task('build:www', function () {
 });
 
 gulp.task('assets', function () {
-    gulp
-        .src('src/www/assets/**/*')
+    gulp.src('src/www/assets/**/*')
         .pipe(gulp.dest('dist/www/assets'));
 });
 
 gulp.task('styles', function () {
-    gulp
-        .src('src/www/**/*.css')
+    gulp.src('src/www/**/*.css')
         .pipe(gulp.dest('dist/www'));
 });
 
 gulp.task('pages', function () {
-    gulp
-        .src('src/www/**/*.html')
+    gulp.src('src/www/**/*.html')
         .pipe(gulp.dest('dist/www'));
 });
 
@@ -51,8 +48,16 @@ gulp.task('watch', function () {
     gulp.watch('src/www/**/*.css', ['styles']);
     gulp.watch('src/www/**/*.html', ['pages']);
     gulp.watch('src/www/**/*.ts', ['build:www']);
+    gulp.watch('src/server/**/*.ts', ['build:server']);
 });
 
+gulp.task('heroku-watch', function () {
+    gulp.watch('src/www/assets/**/*', ['assets']);
+    gulp.watch('src/www/**/*.css', ['styles']);
+    gulp.watch('src/www/**/*.html', ['pages']);
+    gulp.watch('src/www/**/*.ts', ['build:www']);
+    gulp.watch('src/server/**/*.ts', ['build:server']);
+});
 /**
  * Import front end libs from node_modules
  */
@@ -83,13 +88,11 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', ['libs', 'assets', 'styles', 'pages', 'build:www', 'build:server', 'watch'
-], function () {
+gulp.task('start', ['clean', 'watch'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',
-        watch: 'src/server',
-        tasks: ['build:server']
+        watch: 'src/server'
     });
     return stream;
 });
