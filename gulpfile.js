@@ -3,20 +3,9 @@ let ts = require("gulp-typescript");
 let nodemon = require('gulp-nodemon');
 let del = require('del');
 
-gulp.task('clean', function (done) {
-    return del(['libs', 'assets', 'styles', 'pages', 'build:www', 'build:server'], done);
+gulp.task('clean', function () {
+    return del.sync('dist/*');
 });
-
-/**
- * If using github Pages
- */
-// gulp.task('gitPages', function () {     gulp.src('dist/www/**/*')
-// .pipe(gulp.dest('docs'));     });
-
-/**
- * TODO: Build for the front end
- * WIP :(
-//  */
 
 gulp.task('build:www', function () {
     let tsProject = ts.createProject('src/www/tsconfig.json');
@@ -88,7 +77,7 @@ gulp.task('build:server', function () {
 /**
 *Start the node app
 */
-gulp.task('start', ['clean', 'watch'], function () {
+gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
     let stream = nodemon({
         script: 'dist/server.js',
         ext: 'ts',
