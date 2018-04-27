@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "gulp clean && gulp"
+    "dev": "gulp"
   },
   "author": "Esteban Morales",
   "license": "MIT"
