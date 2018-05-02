@@ -1,5 +1,5 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "emitDecoratorMetadata": true,
@@ -9,19 +9,21 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-      "target": "es5",
-      "noImplicitAny": false,
-      "typeRoots": [
-        "node_modules/@types"
-      ],
-      "lib": [
-        "es2017",
-        "dom"
-      ]
-    },
-    "include": [
-      "./**/*.ts"
+    "target": "es5",
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "compileOnSave": false
-  }
-  
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false
+}

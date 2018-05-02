@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan'; //Only in dev
 import fs = require('fs');
+import { verifyAuthentication } from './modules/authenticate';
 
 
 const app = express();
@@ -29,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'www')));
 // these are the paths of each folder to be used.
 const dirPages = 'www/pages';
 
-// this is the route to be used. 
+// Imported routes to be used
 const index = require('./routes/main.js');
+const authenticate = require('./routes/authenticate.js');
 
 //example of calling a route. 
 app.use('/index', index);
@@ -50,6 +52,10 @@ app.get('/', function (req, res) {
     res.end(data);
   });
 });
+
+// Routes that may need authentication
+app.use('/authenticate', authenticate);
+app.use(verifyAuthentication);
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {

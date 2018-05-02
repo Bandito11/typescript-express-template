@@ -11,6 +11,9 @@
     "sourceMap": true,
     "target": "es2017",
     "removeComments": true,
+    "lib": [
+      "es2017"
+    ],
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -18,6 +21,9 @@
   },
   "include": [
     "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ],
   "compileOnSave": false
 }
