@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'www')));
 const main = require('./main/main.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
 
-app.get('/', main);
+app.get('*', main);
 
 // Routes that may need authentication
 app.use('/authenticate', authenticate);
