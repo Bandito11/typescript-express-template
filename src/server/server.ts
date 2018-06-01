@@ -5,8 +5,9 @@ import { verifyAuthentication } from './authenticate/authenticate.module';
 
 
 const app = express();
-require('dotenv').config();
-require('http').globalAgent.maxSockets = 5;
+require('dotenv').config(); //Only in dev
+require('http').globalAgent.maxSockets = 5;  //Only in dev
+// require('http').globalAgent.maxSockets = Infinity;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +17,7 @@ const path = require('path');
 // Only allow if you want to use it as an API.
 app.use(function (req, res, next) {
   //   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token, Authorization');
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
   next();
 });
@@ -30,11 +31,20 @@ app.use(express.static(path.join(__dirname, 'www')));
 const main = require('./main/main.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
 
+//Routes
 app.get('*', main);
 
-// Routes that may need authentication
-app.use('/authenticate', authenticate);
-app.use(verifyAuthentication);
+// Api Routes
+const apiRoutes = express.Router();
+
+// Route used to Authenticate
+apiRoutes.use('/authenticate', authenticate);
+
+// Route to verify Authentication
+apiRoutes.use(verifyAuthentication);
+
+// Authenticated routes
+// apiRoutes.use('/my_custom_route', myCustomRoute);
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {
