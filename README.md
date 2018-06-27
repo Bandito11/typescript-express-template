@@ -14,7 +14,6 @@
 - run < cd /toproject >
 - git remote rm origin
 - Install nodejs from www.nodejs.org
-- Open the terminal (command prompt if on Windows) and run < npm install -g firebase-tools >
 - Run < cd ~/path/to/project > on the Terminal. 
 - On the terminal run < npm install >. This will install all the packages in the package.json.
 - npm i
