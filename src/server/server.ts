@@ -8,13 +8,11 @@ require('http').globalAgent.maxSockets = 5;
 
 app.use(morgan('dev')); //Only in dev
 ////////////////////////////////////////
-
 // require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 const path = require('path');
-// Only allow if you want to use it as an API.
 app.use(function (req, res, next) {
   //   res.header("Access-Control-Allow-Origin", "*"); // uncomment if server is used as API
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token, Authorization');
@@ -24,7 +22,6 @@ app.use(function (req, res, next) {
 app.disable('x-powered-by');
 //In order to call static pages to be used on the front end. 
 app.use(express.static(path.join(__dirname, 'www')));
-
 // Imported routes to be used
 const main = require('./main/main.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
