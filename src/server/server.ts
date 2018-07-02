@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+var helmet = require('helmet');
 import { verifyAuthentication } from './authenticate/authenticate.module';
 /////only in development environment. Comment this section otherwise!
 import * as morgan from 'morgan';
@@ -12,6 +13,7 @@ app.use(morgan('dev')); //Only in dev
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(helmet());
 const path = require('path');
 app.use(function (req, res, next) {
   //   res.header("Access-Control-Allow-Origin", "*"); // uncomment if server is used as API
