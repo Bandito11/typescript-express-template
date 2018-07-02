@@ -21,7 +21,6 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
   next();
 });
-app.disable('x-powered-by');
 //In order to call static pages to be used on the front end. 
 app.use(express.static(path.join(__dirname, 'www')));
 // Imported routes to be used
