@@ -12,7 +12,8 @@
     "request": "latest",
     "serve-favicon": "latest",
     "jsonwebtoken": "latest",
-    "serve-static": "latest"
+    "serve-static": "latest",
+    "helmet":"latest"
   },
   "devDependencies": {
     "@types/serve-static": "latest",
