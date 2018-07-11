@@ -3,10 +3,9 @@ import * as bodyParser from 'body-parser';
 import *  as helmet from 'helmet';
 import { verifyAuthentication } from './authenticate/authenticate.module';
 /////only in development environment. Comment this section otherwise!
-import * as morgan from 'morgan';
 require('dotenv').config();
 require('http').globalAgent.maxSockets = 5;
-app.use(morgan('dev')); //Only in dev
+app.user(require(morgan('dev'))); //Only in dev
 ////////////////////////////////////////
 // require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 const app = express();
