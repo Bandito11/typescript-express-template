@@ -5,7 +5,7 @@ import { verifyAuthentication } from './authenticate/authenticate.module';
 /////only in development environment. Comment this section otherwise!
 require('dotenv').config();
 require('http').globalAgent.maxSockets = 5;
-app.user(require(morgan('dev'))); //Only in dev
+app.use(require(morgan('dev'))); //Only in dev
 ////////////////////////////////////////
 // require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 const app = express();
