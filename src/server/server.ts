@@ -2,13 +2,14 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import *  as helmet from 'helmet';
 import { verifyAuthentication } from './authenticate/authenticate.module';
+const app = express();
+
 /////only in development environment. Comment this section otherwise!
 require('dotenv').config();
 require('http').globalAgent.maxSockets = 5;
-app.use(require(morgan('dev'))); //Only in dev
+app.use(require('morgan')('dev')); //Only in dev
 ////////////////////////////////////////
 // require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
-const app = express();
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
