@@ -26,9 +26,6 @@ app.use(express.static(path.join(__dirname, 'www')));
 const main = require('./main/main.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
 
-//Routes
-app.get('*', main);
-
 // Api Routes
 const apiRoutes = express.Router();
 
@@ -42,6 +39,9 @@ apiRoutes.use(verifyAuthentication);
 // apiRoutes.use('/my_custom_route', myCustomRoute); An example of using a imported route.
 
 app.use(apiRoutes);
+
+//Call for index.html. Always goes last
+app.get('*', main);
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {
