@@ -6,18 +6,9 @@
 
 
 # Instructions- 
-- Go to https://git-scm.com/ and follow the instruction to install git.
-- Create a Github account on www.github.com
-- run < git config --global user.email "email@example.com" > on the Terminal to set the email for your github account. 
-- run < cd ~/path/to/project > 
-- run < git clone https://github.com/Bandito11/webFire-Template.git myprojectname >
-- run < cd /toproject >
-- git remote rm origin
-- Install nodejs from www.nodejs.org
-- Run < cd ~/path/to/project > on the Terminal. 
-- On the terminal run < npm install >. This will install all the packages in the package.json.
-- npm i
-- npm dev
+- Write < cd ~/path/to/project > in the Terminal and press enter. 
+- In the terminal write < npm i > and press enter. This will install all the packages in the package.json.
+- In the terminal write < gulp > or < npm run dev > and press enter
  
 #
 
