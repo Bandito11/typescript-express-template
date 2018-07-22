@@ -34,14 +34,14 @@ apiRoutes.use('/authenticate', authenticate);
 
 // Route to verify Authentication
 apiRoutes.use(verifyAuthentication);
-
 // Authenticated routes
 // apiRoutes.use('/my_custom_route', myCustomRoute); An example of using a imported route.
 
-//Call for index.html. Always goes last
+//////These two routes always goes together//////
+//Call for index.html.
 app.get('*', index);
-
 app.use(apiRoutes);
+/////////////////////////
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {
