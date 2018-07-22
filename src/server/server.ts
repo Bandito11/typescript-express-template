@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 //In order to call static pages to be used on the front end. 
 app.use(express.static(path.join(__dirname, 'www')));
 // Imported routes to be used
-const main = require('./main/main.route.js');
+const index = require('./index/index.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
 
 // Api Routes
@@ -38,10 +38,10 @@ apiRoutes.use(verifyAuthentication);
 // Authenticated routes
 // apiRoutes.use('/my_custom_route', myCustomRoute); An example of using a imported route.
 
-app.use(apiRoutes);
-
 //Call for index.html. Always goes last
-app.get('*', main);
+app.get('*', index);
+
+app.use(apiRoutes);
 
 //Error Handling, always goes last. 
 app.use(function (err, req, res, next) {
