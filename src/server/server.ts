@@ -9,6 +9,7 @@ require('dotenv').config();
 require('http').globalAgent.maxSockets = 5;
 app.use(require('morgan')('dev')); //Only in dev
 ////////////////////////////////////////
+
 // require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 app.use(helmet());
 app.use(bodyParser.json());
@@ -37,9 +38,10 @@ apiRoutes.use(verifyAuthentication);
 // Authenticated routes
 // apiRoutes.use('/my_custom_route', myCustomRoute); An example of using a imported route.
 
-//////These two routes always goes together//////
-//Call for index.html.
+
+// This will call the first page. The path can be changed to whatever you want.
 app.get('*', index);
+
 app.use(apiRoutes);
 /////////////////////////
 
