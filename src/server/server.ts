@@ -4,6 +4,9 @@ import *  as helmet from 'helmet';
 import { verifyAuthentication } from './authenticate/authenticate.module';
 
 const app = express();
+const path = require('path');
+const PORT = process.env.PORT || 3000;
+
 if (!process.env.NODE_ENV) require('dotenv').config();
 
 if (process.env.NODE_ENV === 'development') {
@@ -12,7 +15,6 @@ if (process.env.NODE_ENV === 'development') {
 } else require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 
 app.use(helmet());
-const path = require('path');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function (req, res, next) {
@@ -57,7 +59,6 @@ app.use(function (err, req, res, next) {
   res.end('There was an error in the system, please try again!');
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
   console.log(`Listening on port: ${PORT}`);
 });
