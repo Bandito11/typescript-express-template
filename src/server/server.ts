@@ -2,30 +2,36 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import *  as helmet from 'helmet';
 import { verifyAuthentication } from './authenticate/authenticate.module';
+
 const app = express();
+if (!process.env.NODE_ENV) require('dotenv').config();
 
-/////only in development environment. Comment this section otherwise!
-require('dotenv').config();
-require('http').globalAgent.maxSockets = 5;
-app.use(require('morgan')('dev')); //Only in dev
-////////////////////////////////////////
+if (process.env.NODE_ENV === 'development') {
+  require('http').globalAgent.maxSockets = 5;
+  app.use(require('morgan')('dev')); //Only in dev
+} else require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 
-// require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
 app.use(helmet());
+const path = require('path');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-const path = require('path');
 app.use(function (req, res, next) {
-  //   res.header("Access-Control-Allow-Origin", "*"); // uncomment if server is used as API
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token, Authorization');
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
+  if (process.env.NODE_ENV === 'development') res.header('Access-Control-Allow-Origin', '*'); // uncomment if server is used as API
+
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
   next();
 });
 //In order to call static pages to be used on the front end. 
 app.use(express.static(path.join(__dirname, 'www')));
+
 // Imported routes to be used
 const index = require('./index/index.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
+const example = require('./example/example.route.js');
+
+//Unauthenticated Routes
+app.use('/example', example);
 
 // Api Routes
 const apiRoutes = express.Router();
