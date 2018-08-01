@@ -5,9 +5,9 @@ import { verifyAuthentication } from './authenticate/authenticate.module';
 
 const app = express();
 const path = require('path');
-const PORT = process.env.PORT || 3000;
 
 if (!process.env.NODE_ENV) require('dotenv').config();
+const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === 'development') {
   require('http').globalAgent.maxSockets = 5;
