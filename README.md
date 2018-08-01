@@ -1,4 +1,4 @@
-# TODO:
+# FOREVER TODO :)
 
  This is a simple typescript node server. Its gonna be the basis for all my projects and it uses npm libraries that I commonly
  use. This will be updated as time goes by. If you want to use it feel free to do so.

@@ -13,7 +13,8 @@
     "serve-favicon": "latest",
     "jsonwebtoken": "latest",
     "serve-static": "latest",
-    "helmet": "latest"
+    "helmet": "latest",
+    "axios":"^0.18.0"
   },
   "devDependencies": {
     "@types/serve-static": "latest",
