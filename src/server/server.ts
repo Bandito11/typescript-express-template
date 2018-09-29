@@ -24,11 +24,9 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
   next();
 });
-//In order to call static pages to be used on the front end. 
-app.use(express.static(path.join(__dirname, 'www')));
+
 
 // Imported routes to be used
-const index = require('./index/index.route.js');
 const authenticate = require('./authenticate/authenticate.route.js');
 const example = require('./example/example.route.js');
 
@@ -46,6 +44,10 @@ apiRoutes.use(verifyAuthentication);
 // Authenticated routes
 // apiRoutes.use('/my_custom_route', myCustomRoute); An example of using a imported route.
 
+
+//In order to call static pages to be used on the front end.
+app.use(express.static(path.join(__dirname, 'www'))); 
+const index = require('./index/index.route.js');
 
 // This will call the first page. The path can be changed to whatever you want.
 app.get('*', index);
