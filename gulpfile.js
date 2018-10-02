@@ -75,6 +75,11 @@ gulp.task('build:server', function () {
 });
 
 /**
+ * Build the node app
+ */
+gulp.task('build', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server'], function(){});
+
+/**
 *Start the node app
 */
 gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
