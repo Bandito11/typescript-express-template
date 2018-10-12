@@ -14,7 +14,7 @@
     "jsonwebtoken": "latest",
     "serve-static": "latest",
     "helmet": "latest",
-    "axios":"^0.18.0"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "@types/serve-static": "latest",
@@ -36,7 +36,7 @@
     "dotenv": "latest"
   },
   "scripts": {
-    "start": "gulp build && node dist/server.js",
+    "start": "gulp build && node dist/cluster.js",
     "dev": "gulp"
   },
   "author": "Esteban Morales",
