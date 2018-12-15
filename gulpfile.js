@@ -1,94 +1,82 @@
-let gulp = require("gulp");
-let ts = require("gulp-typescript");
-let nodemon = require('gulp-nodemon');
-let del = require('del');
 
-gulp.task('clean', function () {
-    return del.sync('dist/*');
-});
+const { series, src, dest } = require('gulp');
+const ts = require('gulp-typescript');
+const nodemon = require('gulp-nodemon');
+const del = require('del');
 
-gulp.task('build:www', function () {
-    let tsProject = ts.createProject('src/www/tsconfig.json');
-    console.log('Compiling www!');
+
+const paths = {
+    assets: {
+        src: 'src/www/assets/**/*',
+        dest: 'dist/www/assets'
+    },
+    styles: {
+        src: 'src/www/**/*.css',
+        dest: 'dist/www'
+    },
+    pages: {
+        src: 'src/www/**/*.html',
+        dest: 'dist/www'
+    }
+}
+
+function assets() {
+    return src(paths.assets.src)
+        .pipe(dest(paths.assets.dest));
+}
+
+function styles() {
+    return src(paths.styles.src)
+        .pipe(dest(paths.styles.dest));
+}
+
+function pages() {
+    return src(paths.pages.src)
+        .pipe(dest(paths.pages.dest));
+}
+
+
+function clean() {
+    return del(['dist']);
+}
+
+function buildWWW() {
+    const tsProject = ts.createProject('src/www/tsconfig.json');
     return tsProject
         .src()
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest("dist/www/js"));
-});
+        .pipe(dest("dist/www/js"));
+}
 
-gulp.task('assets', function () {
-    gulp.src('src/www/assets/**/*')
-        .pipe(gulp.dest('dist/www/assets'));
-});
-
-gulp.task('styles', function () {
-    gulp.src('src/www/**/*.css')
-        .pipe(gulp.dest('dist/www'));
-});
-
-gulp.task('pages', function () {
-    gulp.src('src/www/**/*.html')
-        .pipe(gulp.dest('dist/www'));
-});
-
-gulp.task('watch', function () {
-    gulp.watch('src/www/assets/**/*', ['assets']);
-    gulp.watch('src/www/**/*.css', ['styles']);
-    gulp.watch('src/www/**/*.html', ['pages']);
-    gulp.watch('src/www/**/*.ts', ['build:www']);
-    gulp.watch('src/server/**/*.ts', ['build:server']);
-});
-
-gulp.task('heroku-watch', function () {
-    gulp.watch('src/www/assets/**/*', ['assets']);
-    gulp.watch('src/www/**/*.css', ['styles']);
-    gulp.watch('src/www/**/*.html', ['pages']);
-    gulp.watch('src/www/**/*.ts', ['build:www']);
-    gulp.watch('src/server/**/*.ts', ['build:server']);
-});
 /**
- * Import front end libs from node_modules
+ * Build for the server side.
  */
-
-gulp.task('libs', function () {
-    gulp
-        .src('node_modules/lokijs/build/lokijs.min.js')
-        .pipe(gulp.dest('dist/www/libs'));
-
-    gulp
-        .src('src/www/**/*.js')
-        .pipe(gulp.dest('dist/www'));
-});
-
-/**
-* Build for the server side.
-*/
-gulp.task('build:server', function () {
-    let tsProject = ts.createProject('src/server/tsconfig.json');
-    console.log('Compiling server!');
+function buildServer() {
+    const tsProject = ts.createProject('src/server/tsconfig.json');
     return tsProject
         .src()
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest("dist"));
-});
+        .pipe(dest('dist'));
+}
+
+// function watch() {
+//     gulp.watch(paths.server.src, buildServer);
+// }
+
 
 /**
- * Build the node app
+ *Start the node app
  */
-gulp.task('build', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server'], function(){});
-
-/**
-*Start the node app
-*/
-gulp.task('start', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'build:server','watch'], function () {
-    let stream = nodemon({
-        script: 'dist/cluster.js',
+async function debug() {
+    return nodemon({
+        script: 'dist/server.js',
         ext: 'ts',
-        watch: 'src/server'
+        watch: 'src/server',
+        tasks: ['build']
     });
-    return stream;
-});
+}
 
-gulp.task('default', ['start']);
+exports.build = series(clean, pages, styles, assets, buildWWW, buildServer);
+exports.default = series(clean, pages, styles, assets, buildWWW, buildServer, debug);
