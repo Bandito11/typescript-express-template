@@ -1,6 +1,6 @@
 {
   "name": "node-template",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Template to have a running server in seconds",
   "engines": {
     "node": ">=8.0.0"
@@ -13,12 +13,12 @@
     "jsonwebtoken": "latest",
     "serve-static": "latest",
     "helmet": "latest",
-    "axios": "^0.18.0"
+    "axios": "latest"
   },
   "devDependencies": {
     "@types/body-parser": "latest",
     "@types/express": "latest",
-    "@types/gulp": "^4.0.5",
+    "@types/gulp": "latest",
     "@types/gulp-nodemon": "latest",
     "@types/lokijs": "latest",
     "@types/morgan": "latest",
@@ -26,7 +26,7 @@
     "@types/serve-static": "latest",
     "del": "latest",
     "dotenv": "latest",
-    "gulp": "^4.0.0",
+    "gulp": "latest",
     "gulp-nodemon": "latest",
     "gulp-typescript": "latest",
     "morgan": "latest",

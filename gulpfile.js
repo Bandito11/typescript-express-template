@@ -1,5 +1,5 @@
 
-const { series, src, dest } = require('gulp');
+const { series, src, dest, parallel } = require('gulp');
 const ts = require('gulp-typescript');
 const nodemon = require('gulp-nodemon');
 const del = require('del');
@@ -78,5 +78,5 @@ async function debug() {
     });
 }
 
-exports.build = series(clean, pages, styles, assets, buildWWW, buildServer);
-exports.default = series(clean, pages, styles, assets, buildWWW, buildServer, debug);
+exports.build = series(clean, parallel(pages, styles, assets), parallel(buildWWW, buildServer));
+exports.default = series(clean, parallel(pages, styles, assets), parallel(buildWWW, buildServer), debug);

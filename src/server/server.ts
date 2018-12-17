@@ -9,16 +9,16 @@ const path = require('path');
 if (!process.env.NODE_ENV) require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   require('http').globalAgent.maxSockets = 5;
-  app.use(require('morgan')('dev')); //Only in dev
-} else require('http').globalAgent.maxSockets = Infinity; //Uncomment for distribution
+  app.use(require('morgan')('dev'));
+} else require('http').globalAgent.maxSockets = Infinity;
 
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function (req, res, next) {
-  if (process.env.NODE_ENV === 'development') res.header('Access-Control-Allow-Origin', '*'); // uncomment if server is used as API
+  if (process.env.NODE_ENV !== 'production') res.header('Access-Control-Allow-Origin', '*'); // uncomment if server is used as API
 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT');
