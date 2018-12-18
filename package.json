@@ -8,19 +8,15 @@
   "dependencies": {
     "body-parser": "latest",
     "express": "latest",
-    "lokijs": "latest",
     "serve-favicon": "latest",
-    "jsonwebtoken": "latest",
     "serve-static": "latest",
-    "helmet": "latest",
-    "axios": "latest"
+    "helmet": "latest"
   },
   "devDependencies": {
     "@types/body-parser": "latest",
     "@types/express": "latest",
     "@types/gulp": "latest",
     "@types/gulp-nodemon": "latest",
-    "@types/lokijs": "latest",
     "@types/morgan": "latest",
     "@types/serve-favicon": "latest",
     "@types/serve-static": "latest",
