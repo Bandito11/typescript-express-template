@@ -8,9 +8,9 @@
   "dependencies": {
     "body-parser": "latest",
     "express": "latest",
+    "helmet": "latest",
     "serve-favicon": "latest",
-    "serve-static": "latest",
-    "helmet": "latest"
+    "serve-static": "latest"
   },
   "devDependencies": {
     "@types/body-parser": "latest",
