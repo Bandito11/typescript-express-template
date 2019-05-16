@@ -46,7 +46,7 @@ function buildWWW() {
         .src()
         .pipe(tsProject())
         .js
-        .pipe(dest("dist/www/js"));
+        .pipe(dest("dist/www/scripts"));
 }
 
 /**
@@ -73,7 +73,7 @@ async function debug() {
     return nodemon({
         script: 'dist/server.js',
         ext: 'ts',
-        watch: 'src/server',
+        watch: 'src/**/*',
         tasks: ['build']
     });
 }

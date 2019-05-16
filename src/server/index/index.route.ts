@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', function (req, res, next) {
     // these are the paths of each folder to be used.
-    const dirPages = `${__dirname.slice(0, __dirname.length - 5)}/www/pages/index.html`;
+    const dirPages = `${__dirname.slice(0, __dirname.length - 5)}/www/index.html`;
     res.writeHead(200, {
         'Content-Type': 'text/html',
         'charset': 'utf-8'
