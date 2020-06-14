@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { checkIfUserExists, registerUser } from './authenticate.module'
+import { checkIfUserExists, registerUser } from './authenticate'
 const router = Router();
 
 router.post('/', authenticate);
