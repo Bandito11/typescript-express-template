@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
 
 
 // Imported routes to be used
-const authRoutes = require('./authRoutes.js')
+const authRoutes = require('./auth.routes.js')
 const example = require('./example.js')
 const example2 = require('./example2.js')
 
