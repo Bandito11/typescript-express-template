@@ -22,7 +22,7 @@
   "scripts": {
     "prestart": "tsc",
     "build:watch": "tsc --watch",
-    "start:watch": "nodemon --watch src dist/server.js",
+    "start:watch": "nodemon dist/server.js",
     "start:dev": "npm-run-all --parallel start:watch build:watch",
     "start": "node dist/server.js",
     "test": "No test was specified"

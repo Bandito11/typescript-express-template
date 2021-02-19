@@ -2,17 +2,17 @@ import express from 'express';
 import * as bodyParser from 'body-parser'
 import helmet from 'helmet';
 import { Response } from 'express'
+import dotenv from 'dotenv';
+import http from 'http';
 
 const app = express();
-require('dotenv').config();
-
-if (!process.env.NODE_ENV) require('dotenv').config();
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
-  require('http').globalAgent.maxSockets = Infinity;
+  http.globalAgent.maxSockets = Infinity;
 } else {
-  require('http').globalAgent.maxSockets = 5;
+  http.globalAgent.maxSockets = 5;
   app.use(require('morgan')('dev'));
 }
 
@@ -31,14 +31,14 @@ app.get('/', (req, res, next) => {
 })
 
 //Error Handling, always goes last. 
-app.use(function (err: Error, req, res: Response, _next) {
+app.use((err: Error, req, res: Response, _next) => {
   console.error('*****************SERVER ERROR MESSAGE*****************');
   console.error(err);
   console.error('***********************************************');
   //TODO: Implement 404 error
 })
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 })
 
