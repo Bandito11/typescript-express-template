@@ -1,8 +1,9 @@
 {
   "name": "node-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Template to have a running server in seconds",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
