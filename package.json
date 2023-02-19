@@ -1,7 +1,7 @@
 {
-  "name": "node-template",
+  "name": "typescript-express-template",
   "version": "0.0.2",
-  "description": "Template to have a running server in seconds",
+  "description": "Template to have a running express server in seconds",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
